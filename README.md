@@ -151,7 +151,7 @@ Provide id of Item to be edited and proide the item with edited fields.
     "name": "Samsung note 7",
     "description": "good mobile with bad battery",
     "price": 960.36,
-    "location": "Kitchner, ON, CA",
+    "location": "Toronto, ON"
     "createdAt": "2022-01-14T10:10:00",
     "modifyAt": "2022-01-19T17:49:48.2135444"
 }
