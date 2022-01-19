@@ -21,7 +21,7 @@ import com.shopify.inventory.exception.InventoryException;
 import com.shopify.inventory.service.DataExportService;
 import com.shopify.inventory.service.ProductService;
 
-@RestController
+@RestController()
 public class InventoryController {
 
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
@@ -33,7 +33,7 @@ public class InventoryController {
 	private DataExportService dataExportService;
 	
 	@PostMapping("/create")
-	public ResponseEntity<ProductDTO> createItem(@RequestBody ProductDTO productDTO) {
+	public ResponseEntity<ProductDTO> createItem(@RequestBody ProductDTO productDTO) throws InventoryException{
 		ProductDTO createdProduct = productService.addProduct(productDTO);
 		log.info("Item created: {}", createdProduct.toString());
 		return new ResponseEntity<>(createdProduct, HttpStatus.CREATED);

@@ -9,7 +9,7 @@ public interface ProductService {
 
 	List<ProductDTO> getAllProducts();
 
-	ProductDTO addProduct(ProductDTO product);
+	ProductDTO addProduct(ProductDTO product) throws InventoryException;
 
 	ProductDTO editProduct(Integer productId, ProductDTO productDTO) throws InventoryException;
 

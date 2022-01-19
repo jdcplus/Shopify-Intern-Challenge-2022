@@ -37,8 +37,12 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public ProductDTO addProduct(ProductDTO product) {
+	public ProductDTO addProduct(ProductDTO product) throws InventoryException{
+		
 		log.debug("Adding item to inventory :{}", product.toString());
+		if(product.getName() == null || product.getName().isBlank()) {
+			throw new InventoryException("Item name is required to add into Inventory.");
+		}
 		Product savedProduct = productRepository.save(UtilityHelper.MapDTOToEntity(product));
 		log.debug("Item added to the inventory with id {}.", savedProduct.getId());
 		return UtilityHelper.MapEntityToDTO(savedProduct);
@@ -49,6 +53,11 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public ProductDTO editProduct(Integer productId, ProductDTO productDTO) throws InventoryException {
+		
+		if(productId == null) {
+			throw new InventoryException("Item id is required to edit the item from Inventory.");
+		}
+		
 		Optional<Product> product = productRepository.findById(productId);
 
 		log.info("testing : " + environment.getProperty(ExceptionConstants.GENERAL_ERROR.toString()));
@@ -68,6 +77,11 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public void deleteProduct(Integer productId) throws InventoryException {
+		
+		if(productId == null) {
+			throw new InventoryException("Item id is required to delete the item from Inventory.");
+		}
+		
 		Optional<Product> product = productRepository.findById(productId);
 		if (product.isEmpty()) {
 			throw new InventoryException("No item exists in the inventory with id " + productId);
