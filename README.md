@@ -9,6 +9,7 @@
 
 ### Using IDE (Spring Tool Suit)
 - Clone the project and open it's root directory in Spring Tool Suit (STS)
+- Update the MySQL url, username, password as per your system in the application.properties file (`spring.datasource.url, spring.datasource.username, spring.datasource.password=root`)
 - Update the maven dependencies (Right click on project name -> Maven -> Update Project)
 - Perform cleanup (Right click on project name -> Run as -> Maven Clean)
 - Perform build (Right click on project name -> Run as -> Maven Install) 
@@ -18,6 +19,7 @@
 ### Using Command line
 ### Steps
 - Clone the project and navigate to it's classpath directory (/InverntoryManagement)
+- Update the MySQL url, username, password as per your system in the application.properties file (`spring.datasource.url, spring.datasource.username, spring.datasource.password=root`)
 - Open cmd in the given directory and run the following command
 ```sh
  mvn clean install
