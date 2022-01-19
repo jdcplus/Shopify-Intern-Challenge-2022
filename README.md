@@ -1,4 +1,4 @@
-# Shopify-Intern-Challenge-2022
+# Shopify-Backend-Intern-Challenge-2022
 
 ## Instruction to run the code
 
