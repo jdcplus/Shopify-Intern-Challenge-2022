@@ -30,6 +30,7 @@
 
 
 # API Documentation
+# Basic CRUD functionality
 # 1. Add Item in Invetory
 Add item in the inventory
 **URL** : `/create/`
@@ -145,3 +146,9 @@ Item has been deleted
 **Condition** : If Item id is invalid
 **Code** : `400 BAD REQUEST`
 **ErrorMessage** : `No item exists in the inventory with id {item-id}.`
+
+# Feature Choosen (Exporting Product data to a CSV file)
+# 5. CSV export of entire inventory
+Export all items from inventory as csv file
+**URL** : `/export/csv`
+**Method** : `GET`
