@@ -33,9 +33,13 @@
 # Basic CRUD functionality
 # 1. Add Item in Invetory
 Add item in the inventory
+
 **URL** : `/create/`
+
 **Method** : `POST`
+
 **Data constraints**
+
 Provide name of Item to be created.
 ```json
 {
