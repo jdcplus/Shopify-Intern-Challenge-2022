@@ -1,5 +1,8 @@
 package com.shopify.inventory.utility;
 
+/*
+ * A Helper class responsible to generate and set error related fields
+ * */
 public class ErrorInfo {
 
 	private int errorCode;

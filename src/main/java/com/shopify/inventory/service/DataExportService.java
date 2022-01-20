@@ -19,12 +19,21 @@ public class DataExportService {
 
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	
+	private final String HEADER_ID = "Item Id";
+	private final String HEADER_NAME = "Item Name";
+	private final String HEADER_DESCRIPTION = "Item Description";
+	private final String HEADER_PRICE = "Item Price";
+	private final String HEADER_LOCATION = "Item Location";
+	private final String HEADER_CREATED_AT = "Item Created";
+	private final String HEADER_MODIFIED_AT = "Item Modified";
+	
 	@Autowired
 	private ProductRepository productRepositoy;
 
 	public void writeInventoryToCsv(Writer writer) {
 		List<Product> products = productRepositoy.findAll();
 		try (CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT)) {
+			csvPrinter.printRecord(HEADER_ID, HEADER_NAME,  HEADER_DESCRIPTION, HEADER_PRICE, HEADER_LOCATION, HEADER_CREATED_AT, HEADER_MODIFIED_AT);
 			for (Product product : products) {
 				csvPrinter.printRecord(product.getId(), product.getName(), product.getDescription(), product.getValue(),
 						product.getLocation(), product.getCreatedAt(), product.getModifyAt());

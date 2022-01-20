@@ -1,5 +1,8 @@
 package com.shopify.inventory.exception;
 
+/*
+ * Responsible to fetch keys from properties file
+ * */
 public enum ExceptionConstants {
 	
 	ITEM_NOT_FOUND("item.not.found"),

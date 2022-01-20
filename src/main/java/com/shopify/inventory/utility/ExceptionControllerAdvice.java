@@ -22,6 +22,10 @@ public class ExceptionControllerAdvice {
 	@Autowired
 	private Environment environment;
 
+	/*
+	 * General Exception handler to catch generalize exception and throw it 
+	 * with custom message from properties file
+	 * */
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<ErrorInfo> generalExceptionHandler(Exception ex) {
 
@@ -34,6 +38,10 @@ public class ExceptionControllerAdvice {
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorInfo);
 	}
 
+	/*
+	 * User defined Exception handler to catch exception of type InventoryException 
+	 * and throw it with custom message from properties file
+	 * */
 	@ExceptionHandler(InventoryException.class)
 	public ResponseEntity<ErrorInfo> InventoryExceptionHandler(InventoryException ex) {
 
@@ -46,6 +54,10 @@ public class ExceptionControllerAdvice {
 		return new ResponseEntity<>(errorInfo, HttpStatus.BAD_REQUEST);
 	}
 
+	/*
+	 * Handlers to catch System defined exception with user defined message
+	 * */
+	
 	@ExceptionHandler(NoHandlerFoundException.class)
 	public ResponseEntity<ErrorInfo> NoSuchRequestHandler(NoHandlerFoundException ex) {
 
@@ -56,7 +68,6 @@ public class ExceptionControllerAdvice {
 		errorInfo.setErrorMsg(environment.getProperty(ExceptionConstants.RESOURCE_NOT_FOUND_ERROR.toString()));
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorInfo);
 	}
-
 	@ExceptionHandler(MissingServletRequestParameterException.class)
 	public ResponseEntity<ErrorInfo> requestParameterExceptionHandler(MissingServletRequestParameterException ex) {
 
