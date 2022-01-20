@@ -24,6 +24,9 @@ public class ProductServiceImpl implements ProductService {
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
+	private Environment environment;
+	
+	@Autowired
 	private ProductRepository productRepository;
 
 	@Override
@@ -48,21 +51,17 @@ public class ProductServiceImpl implements ProductService {
 		return UtilityHelper.MapEntityToDTO(savedProduct);
 	}
 
-	@Autowired
-	private Environment environment;
-
 	@Override
 	public ProductDTO editProduct(Integer productId, ProductDTO productDTO) throws InventoryException {
 		
 		if(productId == null) {
-			throw new InventoryException("Item id is required to edit the item from Inventory.");
+			throw new InventoryException(environment.getProperty(ExceptionConstants.ITEM_ID_REQUIRED.toString()));
 		}
 		
 		Optional<Product> product = productRepository.findById(productId);
 
-		log.info("testing : " + environment.getProperty(ExceptionConstants.GENERAL_ERROR.toString()));
 		if (product.isEmpty()) {
-			throw new InventoryException("No item exists in the inventory with id " + productId);
+			throw new InventoryException(environment.getProperty(ExceptionConstants.ITEM_NOT_FOUND.toString()) + productId);
 		}
 
 		Product entity = product.get();
@@ -79,12 +78,12 @@ public class ProductServiceImpl implements ProductService {
 	public void deleteProduct(Integer productId) throws InventoryException {
 		
 		if(productId == null) {
-			throw new InventoryException("Item id is required to delete the item from Inventory.");
+			throw new InventoryException(environment.getProperty(ExceptionConstants.ITEM_ID_REQUIRED.toString()));
 		}
 		
 		Optional<Product> product = productRepository.findById(productId);
 		if (product.isEmpty()) {
-			throw new InventoryException("No item exists in the inventory with id " + productId);
+			throw new InventoryException(environment.getProperty(ExceptionConstants.ITEM_NOT_FOUND.toString()) + productId);
 		} else {
 			productRepository.delete(product.get());
 		}
